@@ -1,0 +1,60 @@
+
+html.modern(ng-app='therebelrobot')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title theRebelRobot | Trent Oswald | Web Developer
+
+    meta(name='description', content='Ever seen a unicorn in a fight with a velociraptor? My code is that cool. Seriously.')
+    meta(name='viewport', content='width=device-width')
+    meta(name='keywords', content='trent, oswald, development, web, html, css, javascript')
+    meta(name='author', content='Trent Oswald')
+    meta(name='copyright', content='2013')
+    meta(name='application-name', content='theRebelRobot Development')
+    // facebook open graph 
+    meta(property='og:image', content='http://therebelrobot.com/img/newrobot.png')
+    meta(property='og:title', content='theRebelRobot Development')
+    meta(property='og:url', content='http://therebelrobot.com')
+    meta(property='og:site_name', content='Portfolio page for Trent Oswald')
+    meta(property='og:type', content='blog')
+    meta(property='og:description', content='Ever seen a unicorn in a fight with a velociraptor? My code is that cool. Seriously.')
+    // for Twitter 
+    meta(name='twitter:card', content='summary')
+    meta(name='twitter:title', content='theRebelRobot Development')
+    meta(name='twitter:description', content='Ever seen a unicorn in a fight with a velociraptor? My code is that cool. Seriously.')
+    meta(name='twitter:image', content='http://therebelrobot.com/img/newrobot.png')
+    // Place favicon.ico and apple-touch-icon.png in the root directory 
+
+    link(rel='stylesheet', href='css/style.css')
+    script(src='js/lib.js')
+    script(src='js/main.js')
+
+  body.preload(data-state='{{appState}}', data-device='{{device}}')
+    //if lt IE 9
+      p.browsehappy
+        | You are using an
+        strong outdated
+        | browser. Please
+        a(href='http://browsehappy.com/') upgrade your browser
+        | to improve your experience.
+    .container
+      header
+        div(logo='logo', ng-click='setApp(\'main\')')
+          img(src='')
+          h1 theRebelRobot Development
+          h2 Trent Oswald | Web Developer
+        nav
+          li(ng-click='setApp(\'stack\')') Technologies
+          li(ng-click='setApp(\'projects\')') Projects
+          li(ng-click='setApp(\'about\')') About
+          li(ng-click='setApp(\'cv\')') Curriculum Vitae
+          li(ng-click='setApp(\'contact\')') Contact
+      .content(ng-view='')
+    // Google Analytics: change UA-XXXXX-X to be your site's ID 
+    script
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
