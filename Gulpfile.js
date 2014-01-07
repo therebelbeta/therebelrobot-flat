@@ -7,12 +7,24 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
-var path = require('path');
 var ngmin = require('gulp-ngmin');
+var minifyHTML = require('gulp-minify-html');
+var templates = require('gulp-angular-templatecache');
+
 
 gulp.task('scripts', function() {
   // Minify and copy all JavaScript (except vendor scripts)
-  gulp.src(['source/js/**/*.js', '!source/js/lib/**'])
+
+  gulp.src('source/templates/**/*.html')
+    .pipe(minifyHTML({
+          empty: true,
+          spare: true,
+          quotes: true
+      }))
+    .pipe(templates('templates.js'))
+    .pipe(gulp.dest('source/js'));
+
+  gulp.src(['source/js/**/*.js', '!source/js/lib/**', 'source/js/templates.js'])
     .pipe(concat("main.js"))
     .pipe(ngmin())
     .pipe(uglify())
@@ -39,7 +51,7 @@ gulp.task('copy', function() {
   gulp.src('source/img/**')
     .pipe(gulp.dest('build/img'));
 
-  gulp.src('source/**/*.html')
+  gulp.src('source/index.html')
     .pipe(gulp.dest('build'));
 
   gulp.src('source/assets/fonts/**')
@@ -60,14 +72,13 @@ gulp.task('default', function() {
   gulp.watch('source/less/**', function(event) {
     gulp.run('less');
   });
-  gulp.watch('Gulpfile.js', function(event) {
-    gulp.run('default');
+  gulp.watch('source/**/*.html', function(event) {
+    gulp.run('copy','scripts');
   }); 
   gulp.watch([
     'source/img/**',
     'source/assets/fonts/**',
-    'source/assets/misc/**',
-    'source/**/*.html'
+    'source/assets/misc/**'
   ], function(event) {
     gulp.run('copy');
   });

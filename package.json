@@ -3,27 +3,13 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-copy": "*",
-    "grunt-contrib-concat": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-cssmin": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-contrib-less": "*",
-    "grunt-concurrent": "*",
-    "load-grunt-tasks": "*",
-    "connect-livereload": "*",
-    "grunt-ngmin": "*",
-    "time-grunt": "*",
-    "grunt-angular-templates": "*",
     "gulp": "~3.2.4",
     "gulp-uglify": "~0.1.0",
     "gulp-concat": "~2.1.7",
-    "path": "~0.4.9",
     "gulp-less": "~1.1.1",
-    "gulp-ngmin": "~0.1.0"
+    "gulp-ngmin": "~0.1.0",
+    "gulp-minify-html": "~0.1.0",
+    "gulp-angular-templatecache": "~0.1.2"
   },
   "engines": {
     "node": ">=0.8.0"

@@ -1,6 +1,7 @@
 node_modules
 build
 source/lib
+source/js/templates.js
 
 .DS_Store
 build/*
