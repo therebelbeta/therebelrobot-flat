@@ -22,7 +22,8 @@
     "gulp-uglify": "~0.1.0",
     "gulp-concat": "~2.1.7",
     "path": "~0.4.9",
-    "gulp-less": "~1.1.1"
+    "gulp-less": "~1.1.1",
+    "gulp-ngmin": "~0.1.0"
   },
   "engines": {
     "node": ">=0.8.0"

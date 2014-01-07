@@ -1,4 +1,4 @@
-var App = angular.module('therebelrobot', []);
+var App = angular.module('therebelrobot', ['ngRoute']);
 
 App.config(function ($routeProvider) {
     $routeProvider

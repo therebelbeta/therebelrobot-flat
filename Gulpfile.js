@@ -8,18 +8,24 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
 var path = require('path');
+var ngmin = require('gulp-ngmin');
 
 gulp.task('scripts', function() {
   // Minify and copy all JavaScript (except vendor scripts)
   gulp.src(['source/js/**/*.js', '!source/js/lib/**'])
-    .pipe(uglify())
     .pipe(concat("main.js"))
+    .pipe(ngmin())
+    .pipe(uglify())
     .pipe(gulp.dest('build/js'));
 
   // Copy vendor files
-  gulp.src('source/js/lib/**')
+  gulp.src(['source/lib/jquery/jquery.min.js','source/lib/angular/angular.min.js','source/lib/angular-route/angular-route.min.js'])
     .pipe(concat("lib.js"))
-    .pipe(gulp.dest('build/js/vendor'));
+    .pipe(gulp.dest('build/js'));
+
+  gulp.src(['source/lib/**/*.css'])
+    .pipe(concat("lib.css"))
+    .pipe(gulp.dest('build/css/lib'));
 });
 
 gulp.task('less', function () {
