@@ -7,35 +7,34 @@ module.exports = function(grunt) {
     // Config stuff
     project: {
       javascript: {
-        ours: ['source/js/app.js', 'source/js/**/*.js'],
-        lib:  ['source/bower_components/jquery/jquery.min.js', 'source/bower_components/angular/angular.min.js', 'source/bower_components/angular/angular-route.min.js', 'source/bower_components/**/*.min.js']
+        ours: ['app/js/app.js', 'app/js/**/*.js'],
+        lib:  ['app/bower_components/jquery/jquery.min.js', 'app/bower_components/angular/angular.min.js', 'app/bower_components/**/*.min.js']
       },
       secret: grunt.file.readJSON('./secret.json'),
       pkg: grunt.file.readJSON('./package.json')
     },
+
+    // Tasks
+    clean: {
+      build: ['build']
+    },
+
+    copy: {
+      build: {
+        files: [
+          {expand: false, src: 'app/css/style.css',              dest: 'build/css/style.css'},
+          {expand: true,  cwd: 'app/img/',          src: ['**'], dest: 'build/img/'},
+          {expand: true,  cwd: 'app/fonts/',        src: ['**'], dest: 'build/fonts/'},
+          {expand: false, src: ['app/jsmin/main.js'],               dest: 'build/jsmin/main.js'},
+          {expand: false, src: ['app/jsmin/lib.js'],                dest: 'build/jsmin/lib.js'},
+          {expand: false, src: ['app/index.html'],               dest: 'build/index.html'}
+        ]
+      }
+    },
     less: {
       build: {
         files: {
-          "app/css/style.css": "source/less/main.less"
-        }
-      }
-    },
-    jade: {
-      compile: {
-        options: {
-          data: {
-            debug: false
-          },
-          pretty:true
-        },
-        files: {
-          "app/index.html": ["source/jade/index.jade"],
-          "app/templates/states/main.html": ["source/jade/templates/states/main.jade"],
-          "app/templates/states/about.html": ["source/jade/templates/states/about.jade"],
-          "app/templates/states/contact.html": ["source/jade/templates/states/contact.jade"],
-          "app/templates/states/cv.html": ["source/jade/templates/states/cv.jade"],
-          "app/templates/states/projects.html": ["source/jade/templates/states/projects.jade"],
-          "app/templates/states/stack.html": ["source/jade/templates/states/stack.jade"]
+          "app/css/style.css": "app/less/main.less"
         }
       }
     },
@@ -46,13 +45,6 @@ module.exports = function(grunt) {
       styles: {
         files: ['**/*.less'],
         tasks: ['less'],
-        options: {
-          nospawn: true,
-        }
-      },
-      jade: {
-        files: ['**/*.jade'],
-        tasks: ['jade'],
         options: {
           nospawn: true,
         }
@@ -68,6 +60,10 @@ module.exports = function(grunt) {
       javascriptLib: {
         files: '<%= project.javascript.lib %>',
         tasks: ['jshint', 'ngtemplates', 'concat']
+      },
+      templates: {
+        files: ['app/templates/**/*.html'],
+        tasks: ['ngtemplates', 'concat']
       }
     },
     concat: {
@@ -76,11 +72,22 @@ module.exports = function(grunt) {
           banner: '"use strict";\n' 
         },
         src: '<%= project.javascript.ours %>',
-        dest: 'app/js/main.js'
+        dest: 'app/jsmin/main.js'
       },
       javascript_lib: {
         src: '<%= project.javascript.lib %>',
-        dest: 'app/js/lib.js'
+        dest: 'app/jsmin/lib.js'
+      }
+    },
+    ngtemplates: {
+      target: {
+        options: {
+          concat: 'javascript_ours',
+          module: '<%= project.pkg.name %>',
+          base: 'app/templates/'
+        },
+        src: 'app/templates/**/*.html',
+        dest: 'app/jsmin/templates.js'
       }
     },
     jshint: {
@@ -96,6 +103,21 @@ module.exports = function(grunt) {
       },
       all: '<%= project.javascript.ours %>' 
     },
+    ngmin: {
+      build: {
+        files: [{
+          src: 'build/jsmin/main.js',
+          dest: 'build/jsmin/main.js'
+        }]
+      }
+    },
+    uglify: {
+      build: {
+        files: {
+          'build/jsmin/main.js': ['build/jsmin/main.js']
+        }
+      }
+    },
     concurrent: {
       target: {
         tasks: ['watch'],
@@ -110,10 +132,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-ngmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-angular-templates');
   grunt.loadNpmTasks('grunt-concurrent');
   
   // Default task(s).
-  grunt.registerTask('default', ['less', 'jshint', 'concat', 'jade', 'concurrent']);
+  grunt.registerTask('default', ['less', 'jshint', 'ngtemplates', 'concat', 'concurrent']);
+  grunt.registerTask('build',   ['less', 'jshint', 'ngtemplates', 'concat', 'clean:build', 'copy:build', 'ngmin', 'uglify']);
 };

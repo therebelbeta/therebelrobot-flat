@@ -1,10 +1,5 @@
 node_modules
-
-source/bower_components
-app/js
-app/css
-app/index.html
-app/templates/*
+build
 
 .DS_Store
 build/*
