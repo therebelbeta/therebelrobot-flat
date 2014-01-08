@@ -1,0 +1,15 @@
+i{
+	.block(@w,@h){
+		display:inline-block;
+		height:@h;
+		width:@w;
+		
+	}
+	&.robot{
+		.block(30px,30px);
+		background-image:url('../img/robot.png');
+		background-size:contain;
+		background-position:center center;
+		background-repeat:no-repeat;
+	}
+}
