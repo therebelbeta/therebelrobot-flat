@@ -31,11 +31,16 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('build/js'));
 
   // Copy vendor files
-  gulp.src(['source/lib/jquery/jquery.min.js','source/lib/angular/angular.min.js','source/lib/angular-route/angular-route.min.js'])
+  gulp.src([
+    'source/lib/jquery/jquery.min.js',
+    'source/lib/angular/angular.min.js',
+    'source/lib/angular-route/angular-route.min.js',
+    'source/lib/semantic-ui/build/packaged/javascript/semantic.js'
+    ])
     .pipe(concat("lib.js"))
     .pipe(gulp.dest('build/js'));
 
-  gulp.src(['source/lib/**/*.css'])
+  gulp.src(['source/lib/**/*.css','source/lib/semantic-ui/build/packaged/css/semantic.min.css'])
     .pipe(concat("lib.css"))
     .pipe(gulp.dest('build/css/lib'));
 });
@@ -55,7 +60,10 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('build'));
 
   gulp.src('source/assets/fonts/**')
-    .pipe(gulp.dest('build/fonts'));
+    .pipe(gulp.dest('build/css/fonts'));
+
+  gulp.src('source/lib/semantic-ui/build/packaged/fonts/*')
+    .pipe(gulp.dest('build/css/fonts'));
 
   gulp.src('source/assets/misc/**')
     .pipe(gulp.dest('build/misc'));

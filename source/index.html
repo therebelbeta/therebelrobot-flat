@@ -17,13 +17,60 @@
     <script src="js/lib.js"></script>
     <script src="js/main.js"></script>
 </head>
-  <body>
+  <body data-state="{{appLocation}}">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <nav class="ui inverted menu">
+      <div class="ui inverted right icon menu">
+        <a 
+          class="item popup" 
+          ng-class="{'active':appLocation == 'stack'}"
+          href="#/stack" 
+          data-content="My Stack" 
+          data-position="bottom right"
+          data-variation="inverted">
+          <i class="lab icon"></i>
+        </a>      
+        <a 
+          class="item popup" 
+          ng-class="{'active':appLocation == 'projects'}"
+          href="#/projects"  
+          data-content="My Projects" 
+          data-position="bottom right"
+          data-variation="inverted">
+          <i class="suitcase icon"></i>
+        </a>
+        <a 
+          class="item popup" 
+          ng-class="{'active':appLocation == 'about'}"
+          href="#/about"  
+          data-content="My Story" 
+          data-position="bottom right"
+          data-variation="inverted">
+          <i class="male icon"></i>
+        </a>
+        <a 
+          class="item popup" 
+          ng-class="{'active':appLocation == 'contact'}"
+          href="#/contact"  
+          data-content="Contact Me" 
+          data-position="bottom right"
+          data-variation="inverted">
+          <i class="chat outline icon"></i>
+        </a>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <section id="main">Welcome</section>
+      <section id="stack">Stack</section>
+      <section id="projects">Projects</section>
+      <section id="about">About</section>
+      <section id="contact">Contact Me</section>
+    </div>
+    <section id="404"></section>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
