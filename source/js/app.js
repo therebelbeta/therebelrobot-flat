@@ -46,6 +46,7 @@ App.run(["$rootScope", '$window', "$location", function($rootScope, $window, $lo
   setDevice();
   $rootScope.position = ['pos0','pos1','pos2','pos3','pos4','pos5'];
   $rootScope.setPosition = function(state){
+    console.log(state);
     switch (state){
         case 'main':
           $rootScope.position = ['pos0','pos1','pos2','pos3','pos4','pos5'];
@@ -70,8 +71,6 @@ App.run(["$rootScope", '$window', "$location", function($rootScope, $window, $lo
         case '404':
           $rootScope.position = ['pos-5','pos-4','pos-3','pos-2','pos-1','pos0'];
           break;
-          
-
     }
 
   };

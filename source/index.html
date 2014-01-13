@@ -28,7 +28,8 @@
       <a 
         class="ui title item"
         ng-class="{'active':appLocation == ''}"
-        href="#/" >
+        href="#/"
+        ng-click="setPosition('main')" >
         <i class="robot"></i>
         <b>theRebelRobot</b>
       </a>
@@ -38,6 +39,7 @@
           class="item popup" 
           ng-class="{'active':appLocation == 'stack'}"
           href="#/stack" 
+          ng-click="setPosition('stack')"
           data-content="My Stack" 
           data-position="bottom right"
           data-variation="inverted">
@@ -47,6 +49,7 @@
           class="item popup" 
           ng-class="{'active':appLocation == 'projects'}"
           href="#/projects"  
+          ng-click="setPosition('projects')"
           data-content="My Projects" 
           data-position="bottom right"
           data-variation="inverted">
@@ -56,6 +59,7 @@
           class="item popup" 
           ng-class="{'active':appLocation == 'about'}"
           href="#/about"  
+          ng-click="setPosition('about')"
           data-content="My Story" 
           data-position="bottom right"
           data-variation="inverted">
@@ -65,6 +69,7 @@
           class="item popup" 
           ng-class="{'active':appLocation == 'contact'}"
           href="#/contact"  
+          ng-click="setPosition('contact')"
           data-content="Contact Me" 
           data-position="bottom right"
           data-variation="inverted">
@@ -73,12 +78,12 @@
       </div>
     </nav>
     <div class="wrapper">
-      <section id="main" class="{{position[0]}} green">Welcome</section>
-      <section id="stack" class="{{position[1]}} blue">Stack</section>
-      <section id="projects" class="{{position[2]}} orange">Projects</section>
-      <section id="about" class="{{position[3]}} purple">About</section>
-      <section id="contact" class="{{position[4]}} red">Contact Me</section>
-      <section id="error" class="{{position[5]}} teal">404</section>
+      <section id="main" ng-class="position[0]" class="green">Welcome</section>
+      <section id="stack" ng-class="position[1]" class="blue">Stack</section>
+      <section id="projects" ng-class="position[2]" class="orange">Projects</section>
+      <section id="about" ng-class="position[3]" class="purple">About</section>
+      <section id="contact" ng-class="position[4]" class="red">Contact Me</section>
+      <section id="error" ng-class="position[5]" class="teal">404</section>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

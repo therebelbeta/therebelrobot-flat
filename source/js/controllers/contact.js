@@ -1,8 +1,3 @@
-App.controller('ContactCtrl', function ($scope, $routeParams) {
-		$scope.awesomeThings = [
-			'jQuery',
-			'AngularJS',
-			'lessCSS',
-			'Karma'
-		];
+App.controller('ContactCtrl', function ($scope, $routeParams, $rootScope) {
+		
 	});
