@@ -1,12 +1,35 @@
 body{
-
-	&[data-device="desktop"]{
-
-	}
-	&[data-device="tablet"]{
-
-	}
-	&[data-device="phone"]{
-
+	section#main{
+		h1{
+			margin-bottom:1em;
+			img{
+				width:auto;
+				height:2em;
+				position:relative;
+				top:1em;
+			}
+		}
+		h2{
+			width:100%;
+			text-align:right;
+			font-size:3.5em;
+			margin-bottom:2em;
+		}
+		h3{
+			font-size:2em;
+			text-align:right;
+			em{
+				font-style:normal;
+				display:inline-block;
+				padding:.5em;
+				background:@white;
+				color:#339933;
+				cursor:pointer;
+				&:hover{
+					-webkit-box-shadow: 0 0 10px 0 rgba(255,255,255,.5);
+					box-shadow: 0 0 10px 0 rgba(255,255,255,.5);
+				}
+			}
+		}
 	}
 }

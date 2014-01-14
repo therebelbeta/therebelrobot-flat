@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "gulp": "~3.2.4",
+    "gulp": "*",
     "gulp-uglify": "~0.1.0",
     "gulp-concat": "~2.1.7",
     "gulp-less": "~1.1.1",

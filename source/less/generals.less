@@ -1,8 +1,46 @@
 body{
 	font-family: source-sans-pro, sans-serif;
+	color:white;
 	*{
 		#tRRt > .box-sizing(border-box);
 	}
+
+	h1{
+		color:@white;
+		font-size:5em;
+		line-height:1em;
+		font-weight:bold;
+	}
+	h2{
+		color:@white;
+		font-size:4em;
+		line-height:1em;
+		font-weight:bold;
+	}
+	h3{
+		color:@white;
+		font-size:3em;
+		line-height:1em;
+		font-weight:bold;
+	}
+	h4{
+		color:@white;
+		font-size:2em;
+		line-height:1em;
+		font-weight:bold;
+	}
+	h4{
+		color:@white;
+		font-size:1em;
+		line-height:1em;
+		font-weight:bold;
+	}
+	p{
+		color:@white;
+		font-size:1em;
+		font-weight:normal;
+	}
+
 	nav.ui.menu{
 		position:fixed;
 		top:0px;
@@ -37,57 +75,89 @@ body{
 			height:100%;
 			position:absolute;
 			top:0px;
-			&.pos-5{
+			#tRRt > .trans(1s, left);
+			text-align:center;
 
+			article{
+				text-align:left;
+				display:inline-block;
+				width:800px;
+				height:100%;
+				padding:30px;
+			}
+
+
+			&.pos-5{
+				left:-750%;
 			}
 			&.pos-4{
-
+				left:-600%;
 			}
 			&.pos-3{
-
+				left:-450%;
 			}
 			&.pos-2{
-
+				left:-300%;
 			}
 			&.pos-1{
-
+				left:-150%;
 			}
 			&.pos0{
 				left:0px;
 			}
 			&.pos1{
-				left:100%;
+				left:150%;
 			}
 			&.pos2{
-				left:200%;
-			}
-			&.pos3{
 				left:300%;
 			}
+			&.pos3{
+				left:450%;
+			}
 			&.pos4{
-				left:400%;
+				left:600%;
 			}
 			&.pos5{
-				left:400%;
+				left:750%;
 			}
-
+			&:after{
+				content:'';
+				height:100%;
+				width:50%;
+				position:absolute;
+				top:0px;
+				left:100%;
+				background-size:100% 100%;
+			}
 			&#main{
-
+				&:after{
+					background-image:url('../img/transitions/green-blue.jpg');
+				}
 			}
 			&#stack{
-
+				&:after{
+					background-image:url('../img/transitions/blue-orange.jpg');
+				}
 			}
 			&#projects{
-
+				&:after{
+					background-image:url('../img/transitions/orange-purple.jpg');
+				}
 			}
 			&#about{
-
+				&:after{
+					background-image:url('../img/transitions/purple-red.jpg');
+				}
 			}
 			&#contact{
-
+				&:after{
+					background-image:url('../img/transitions/red-teal.jpg');
+				}
 			}
 			&#error{
-
+				&:after{
+					display:none;
+				}
 			}
 		}
 	}
