@@ -1,6 +1,6 @@
-App.directive('stackSection', function ($rootScope) {
+App.directive('projectsSection', function ($rootScope) {
 	return {
-		templateUrl: 'states/stack.html',
+		templateUrl: 'states/projects.html',
 		replace: true,
 		restrict: 'E',
 		controller: function($scope, $element, $attrs) {
