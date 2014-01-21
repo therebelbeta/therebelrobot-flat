@@ -84,6 +84,24 @@
           <h2>I make things people like to see.</h2> 
           <h3>Check out <em ng-click="">my stack</em> or <em ng-click="">my work</em>
         </article>
+        <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+          Modal Title
+        </div>
+        <div class="content">
+          <div class="left">
+            Content can appear on left
+          </div>
+          <div class="right">
+            Content can appear on right
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui button">Cancel</div>
+          <div class="ui button">OK</div>
+        </div>
+      </div>
       </section>
       <section id="stack" ng-class="position[1]" class="blue">
         <article>
@@ -140,7 +158,9 @@
       <section id="error" ng-class="position[5]" class="teal">
         <article>
           Something broke!
-        </article></section>
+        </article>
+      </section>
+
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
